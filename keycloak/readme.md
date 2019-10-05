@@ -10,15 +10,12 @@ If you want to persist the Keycloak settings (which I recommend), you have to fi
 ```
 kubectl create -f postgres-pvc.yaml -f postgres-depl.yaml -f postgres-svc.yaml
 kubectl create -f keycloak-depl-persist.yaml -f keycloak-svc.yaml
-kubectl wait --for=condition=available --timeout=1800s deployment/keycloak
 ```
 ![alttext](https://github.com/ChristofSchwarz/pics/raw/master/keycloak-opts.png "screenshot")
 
 **Note:** Keycloak is a large deployment, it can take 10 min+ until it becomes ready. The command to check the status of just the keycloak pod is: wait until it is "Running"
 ```
-kubectl get pod |grep keycloak
-# or
-kubectl get pod -o=custom-columns=:.status.phase --selector=app=keycloak --no-headers
+kubectl wait --for=condition=available --timeout=1800s deployment/keycloak
 ```
 Those reads helped me with setting up Keycloak on Postgres https://www.dirigible.io/blogs/2018/06/25/kubernetes_keycloak_postgresql_dirigible.html , https://severalnines.com/database-blog/using-kubernetes-deploy-postgresql , https://github.com/peterzandbergen/keycloak-kubernetes.
 
