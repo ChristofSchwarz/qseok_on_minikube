@@ -44,9 +44,10 @@ sudo apt-get install jq -y
 ```
  * Get an access token
 ```
-mytoken=$(curl -X POST http://192.168.56.234:32080/auth/realms/master/protocol/openid-connect/token -d 'username=admin&password=admin&client_id=admin-cli&grant_type=password' | jq '.access_token' -r)
+curl -X POST http://192.168.56.234:32080/auth/realms/master/protocol/openid-connect/token -d "username=admin&password=admin&client_id=admin-cli&grant_type=password" | jq '.access_token' -r
 ```
-... (to be completed) ...
+ * with this access_token you've got 60 seconds to create a client, therefore I put this into a shell script.
+
 
 ## Upgrade Qlik Sense deployment (configure IDP)
 
