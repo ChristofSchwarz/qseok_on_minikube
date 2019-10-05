@@ -8,8 +8,8 @@ helm init
 helm repo update
 
 echo 'installing stable "qliksense-init"'
-helm install -n qlikinit qlik-stable/qliksense-init
+helm upgrade --install qlikinit qlik-stable/qliksense-init
 
 cp /vagrant/yaml/* ~
 echo 'installing stable "qliksense"'
-helm upgrade --install qlik qlik-stable/qliksense -f qliksense.yaml 
+helm upgrade --install qlik qlik-stable/qliksense -f qliksense-simple.yaml 
