@@ -2,11 +2,11 @@
 
 Status: 05-Oct-2019
 
-*Note:* This is a newer version of repository https://github.com/ChristofSchwarz/qs_on_Kubernetes/tree/master/vagrantprovision. The video about installing it https://youtu.be/dhQowB_Q9xU is still acurate to the point that this one already installs Qlik Sense Enterprise on Kubernetes and it uses port 443 (https) instead of 32443. 
+*Note:* This is a newer version of repository <a href="https://github.com/ChristofSchwarz/qs_on_Kubernetes/tree/master/vagrantprovision">qs_on_Kubernetes</a>. The video about installing it https://youtu.be/dhQowB_Q9xU is still acurate to the point that this one already installs Qlik Sense Enterprise on Kubernetes and it uses port 443 (https) instead of 32443. 
 
 The container-creation for all pods of qliksense deployment takes **quite some time**, on slower networks like 60-90 minutes.
 
-Check if all pods are ready with 
+Check if all pods are ready with command
 ```
 kubectl get pods
 ```
@@ -24,8 +24,13 @@ This installation first starts using Qlik's built-in simple OIDC, so you don't n
  * if you don't want to understand the background, just do this from your shell (login as vagrant vagrant)
 ```
 cd ~/keycloak
-
+sh install_keycloak.sh
 sh create_keycloak_client.sh
 ```
-See <a href="keycloak/readme.md">this readme</a> for details about Keycloak installation for QSEoK
+ * the last shell-file will prompt you, if you like to apply the changes to the qlik deployment (using helm upgrade). Enter "y" and wait until the changes are applied and 2 pods are restarted
+ * Qlik Sense is accessible at https://192.168.56.234 (no change in hosts. file needed) with all users you create in Keycloak 
+ * Qlik Sense uses Keycloak as identity-provider (enter console at http://192.168.56.234:32080 with admin admin)
+ 
+**Note** See <a href="keycloak/readme.md">this readme</a> for details about Keycloak installation for QSEoK
+
 
