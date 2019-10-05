@@ -4,11 +4,11 @@
 
 The steps below will start keycloak as a K8s deployment and expose it as a service for your Minikube (NodePort). If deployed on a production cluster, you may need the service type "LoadBalancer". In this case, edit the `keycloak-svc.yaml` file first. 
 
-The simpliest case is Keycloak *without* persistence. You will need two objects:
+The simpliest case is Keycloak *without* persistence. You will need two objects (a deployment and a service):
 ```
 kubectl create -f keycloak-depl-nopersist.yaml -f keycloak-svc.yaml
 ```
-If you want to persist the Keycloak settings (which I recommend), you have to first install a persisted Postgres DB:
+If you want to persist the Keycloak settings (which I recommend), you have to first install a persisted Postgres DB (has a pvc, a deployment, and a service):
 ```
 kubectl create -f postgres-pvc.yaml -f postgres-depl.yaml -f postgres-svc.yaml
 kubectl create -f keycloak-depl-persist.yaml -f keycloak-svc.yaml
