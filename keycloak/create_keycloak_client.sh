@@ -1,3 +1,5 @@
+sudo apt-get install jq -y
+
 export TKN=$(curl -s -X POST \
   http://192.168.56.234:32080/auth/realms/master/protocol/openid-connect/token \
   -d 'username=admin' \
@@ -152,6 +154,6 @@ export CLIENTSECRET=$(curl -s -X GET \
   -H "Authorization: Bearer $TKN" \
  | jq '.value' -r)
 
-echo "Secret is $CLIENTSECRET. Updating in qliksense.yaml"
+echo "Secret is $CLIENTSECRET. Updating in qliksense-keycloak.yaml"
 
 sed -i "s/insert-client-secret-here/$CLIENTSECRET/g" qliksense-keycloak.yaml
