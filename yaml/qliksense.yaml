@@ -10,8 +10,10 @@ mongodb:
 
 edge-auth:
   oidc:
-    enabled: true
-    redirectUri: https://elastic.example:32443/login/callback
+    # next line: true = use built-in simple-oidc, false = use IDP
+    enabled: false 
+    redirectUri: https://elastic.example/login/callback
+#    redirectUri: https://elastic.example:32443/login/callback
 
 elastic-infra:
   nginx-ingress:
@@ -19,15 +21,33 @@ elastic-infra:
       service:
         type: NodePort
         nodePorts:
-          https: 32443
+          https: 443
+#          https: 32443
       extraArgs.report-node-internal-ip-address: ""
 
-hub:
-  ingress:
-    annotations:
-      nginx.ingress.kubernetes.io/auth-signin: https://$host:32443/login?returnto=$request_uri
+#hub:
+#  ingress:
+#    annotations:
+#      nginx.ingress.kubernetes.io/auth-signin: https://$host:32443/login?returnto=$request_uri
 
-management-console:
-  ingress:
-    annotations:
-      nginx.ingress.kubernetes.io/auth-signin: https://$host:32443/login?returnto=$request_uri
+#management-console:
+#  ingress:
+#    annotations:
+#      nginx.ingress.kubernetes.io/auth-signin: https://$host:32443/login?returnto=$request_uri
+
+
+identity-providers:
+  secrets:
+    idpConfigs:
+      - hostname: "192.168.56.234" 
+        primary: true
+        discoveryUrl: "http://192.168.56.234:32080/auth/realms/master/.well-known/openid-configuration"
+        clientId: "qliklogin"
+        clientSecret: "d619a29c-8831-44fd-b2b5-f5860ee7c8aa"
+        realm: "keycloak"
+        clockToleranceSec: 100000000
+        scope: "openid profile"
+        useClaimsFromIdToken: true
+        claimsMapping:
+          client_id: ["clientId"]
+          name: ["name", "preferred_username", "given_name"]
