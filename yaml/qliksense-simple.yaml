@@ -1,0 +1,41 @@
+# This yaml starts qlik-sense with the built-in simple-oidc provider
+# To use it, you must connect to qlik sense with hostname elastic.example ...
+# update your hosts. and add this line (without the hash#)
+# 192.168.56.234 elastic.example
+
+engine:
+  acceptEULA: "yes"
+
+global:
+  persistence:
+    storageClass: localnfs
+
+mongodb:
+  uri: mongodb://qlik:Qlik1234@mongo-mongodb.default.svc.cluster.local:27017/qsefe?ssl=false
+
+edge-auth:
+  oidc:
+    # next line: true = use built-in simple-oidc, false = use IDP
+    enabled: true 
+    redirectUri: https://elastic.example/login/callback
+#    redirectUri: https://elastic.example:32443/login/callback
+
+elastic-infra:
+  nginx-ingress:
+    controller:
+      service:
+        type: NodePort
+        nodePorts:
+          https: 443
+#          https: 32443
+      extraArgs.report-node-internal-ip-address: ""
+
+hub:
+  ingress:
+    annotations:
+      nginx.ingress.kubernetes.io/auth-signin: https://$host/login?returnto=$request_uri
+
+management-console:
+  ingress:
+    annotations:
+      nginx.ingress.kubernetes.io/auth-signin: https://$host/login?returnto=$request_uri
