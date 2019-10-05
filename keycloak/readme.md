@@ -1,5 +1,7 @@
 # Using Keycloak as Identity Provider for QSEoK
 
+**Note:** all mentioned .yaml files are in folder <a href="../yaml">/yaml</a>
+
 The steps below will start keycloak as a K8s deployment and expose it as a service for your Minikube (NodePort). If deployed on a production cluster, you may need the service type "LoadBalancer". In this case, edit the `keycloak-svc.yaml` file first. 
 
 The simpliest case is Keycloak *without* persistence. You will need two objects:
