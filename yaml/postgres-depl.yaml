@@ -43,17 +43,4 @@ spec:
         - name: postgredb
           persistentVolumeClaim:
             claimName:  pvc-postgres
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: postgres-svc
-  labels:
-    app: postgres
-spec:
-  type: ClusterIP
-  ports:
-    - port: 5432
-  selector:
-   app: postgres
 
