@@ -7,9 +7,14 @@ helm repo add qlik-edge https://qlik.bintray.com/edge
 helm init
 helm repo update
 
+echo "copying yaml and keycloak folder to vagrant's home folder"
+mkdir ~/yaml
+cp /vagrant/yaml/* ~/yaml
+mkdir ~/keycloak
+cp /vagrant/keycloak/* ~/keycloak
+
 echo 'installing stable "qliksense-init"'
 helm upgrade --install qlikinit qlik-stable/qliksense-init
 
-cp /vagrant/yaml/* ~
 echo 'installing stable "qliksense"'
-helm upgrade --install qlik qlik-stable/qliksense -f qliksense-simple.yaml 
+helm upgrade --install qlik qlik-stable/qliksense -f yaml/qliksense-simple.yaml 
