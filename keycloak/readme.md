@@ -37,9 +37,13 @@ Those reads helped me with setting up Keycloak on Postgres https://www.dirigible
  * Download this <a href="https://raw.githubusercontent.com/ChristofSchwarz/qs_on_Kubernetes/master/keycloak/qliksense.yaml">.yaml file</a> and edit the Client-Secret before you apply the changes with "helm upgrade ..."
 
 ### Create the client with Keycloak REST API
+ * Use the Json parser tool <a href="https://stedolan.github.io/jq/download/">jq</a>.
+```
+sudo apt-get install jq
+```
  * Get an access token
 ```
-curl -X POST http://192.168.56.234:32080/auth/realms/master/protocol/openid-connect/token -d 'username=admin&password=admin&client_id=admin-cli&grant_type=password' --insecure
+curl -X POST http://192.168.56.234:32080/auth/realms/master/protocol/openid-connect/token -d 'username=admin&password=admin&client_id=admin-cli&grant_type=password' | jq '.access_token' 
 ```
 ... (to be completed) ...
 
