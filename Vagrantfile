@@ -12,6 +12,7 @@ Vagrant.configure("2") do |config|
     v.customize ["modifyvm", :id, "--chipset", "ich9"]
   end  
   config.vm.synced_folder "./yaml", "/vagrant/yaml"
+  config.vm.synced_folder "./keycloak", "/vagrant/keycloak"  
   #the following .sh files are executed as root
   config.vm.provision "bootstrap", type: "shell", path: "./sh/1_bootstrap.sh"
   config.vm.provision "docker", type: "shell", path: "./sh/2_docker.sh"
