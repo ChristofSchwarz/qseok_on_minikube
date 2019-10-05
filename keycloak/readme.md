@@ -12,6 +12,7 @@ If you want to persist the Keycloak settings (which I recommend), you have to fi
 ```
 kubectl create -f postgres-pvc.yaml -f postgres-depl.yaml -f postgres-svc.yaml
 kubectl create -f keycloak-depl-persist.yaml -f keycloak-svc.yaml
+kubectl wait --for=condition=available --timeout=1800s deployment/keycloak
 ```
 ![alttext](https://github.com/ChristofSchwarz/pics/raw/master/keycloak-opts.png "screenshot")
 
