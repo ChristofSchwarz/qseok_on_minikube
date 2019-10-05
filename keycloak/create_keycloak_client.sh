@@ -140,7 +140,7 @@ curl -s -X POST \
     }
 }'
 
-echo "get new client\'s id ..."
+echo 'get id of client "qliklogin" ...'
 
 export CLIENTID=$(curl -s -X GET \
   "http://192.168.56.234:32080/auth/admin/realms/master/clients?clientId=qliklogin" \
