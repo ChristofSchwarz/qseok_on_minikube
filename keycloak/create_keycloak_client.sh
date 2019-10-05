@@ -157,3 +157,10 @@ export CLIENTSECRET=$(curl -s -X GET \
 echo "Secret is $CLIENTSECRET. Updating in qliksense-keycloak.yaml"
 
 sed -i "s/insert-client-secret-here/$CLIENTSECRET/g" qliksense-keycloak.yaml
+
+read -p "apply changes (helm upgrade) to qlik deployment now (y/n)? " answer
+if [ "$answer" != "${answer#[Yy]}" ] ;then
+  helm upgrade --install qlik qlik-stable/qliksense -f qliksense-keycloak.yaml
+  kubectl delete pod --selector=app=identity-providers
+  kubectl delete pod --selector=app=edge-auth
+fi
