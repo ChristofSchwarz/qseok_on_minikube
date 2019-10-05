@@ -72,20 +72,6 @@ kubectl delete configmap postgres-config
 kubectl delete pvc pvc-postgres
 ```
 
-# Using Helm to deploy keycloak
-
-Found installation here https://github.com/codecentric/helm-charts
-```
-helm repo add codecentric https://codecentric.github.io/helm-charts
-helm install -n keycloak codecentric/keycloak --set keycloak.service.type=NodePort --set keycloak.service.nodePort=32080
-```
-All other settings you can pass (with --set or in a .yaml file) explained here:
-https://github.com/codecentric/helm-charts/tree/master/charts/keycloak
-
-Without further configuration, also this helm deployment won't persist (it starts a separate postgres-db though). Let me 
-know if you managed a setup that persists, so I can share ...
-
-
 
 # Errors 
 The configuration of the identity-provider can lead to some error messages by Qlik Sense:
