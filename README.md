@@ -6,5 +6,5 @@ Status: 05-Oct-2019
 
 ## using Keycloak as IDP for QSEoK
 
-See <a href="keycloak/readme.md">keycloak folder</a>
+See <a href="keycloak/readme.md">this readme</a>
 
