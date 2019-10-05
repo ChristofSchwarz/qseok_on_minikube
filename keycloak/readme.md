@@ -1,7 +1,5 @@
 # Using Keycloak as Identity Provider for QSEoK
 
-**Note:** all mentioned .yaml files are in folder <a href="../yaml">/yaml</a>
-
 The steps below will start keycloak as a K8s deployment and expose it as a service for your Minikube (NodePort). If deployed on a production cluster, you may need the service type "LoadBalancer". In this case, edit the `keycloak-svc.yaml` file first. 
 
 The simpliest case is Keycloak *without* persistence. You will need two objects (a deployment and a service):
@@ -46,7 +44,7 @@ sudo apt-get install jq -y
 ```
 curl -X POST http://192.168.56.234:32080/auth/realms/master/protocol/openid-connect/token -d "username=admin&password=admin&client_id=admin-cli&grant_type=password" | jq '.access_token' -r
 ```
- * with this access_token you've got 60 seconds to create a client, therefore I put this into a shell script.
+ * with this access_token you've got 60 seconds to create a client, therefore I put this into a this <a href="create_keycloak_client.sh">shell script</a>.
 
 
 ## Upgrade Qlik Sense deployment (configure IDP)
