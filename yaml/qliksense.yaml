@@ -43,7 +43,7 @@ identity-providers:
         primary: true
         discoveryUrl: "http://192.168.56.234:32080/auth/realms/master/.well-known/openid-configuration"
         clientId: "qliklogin"
-        clientSecret: "d619a29c-8831-44fd-b2b5-f5860ee7c8aa"
+        clientSecret: "d619a29c-8831-44fd-b2b5-f5860ee7c8aa"  # set to the secret you get after creating client in keycloak
         realm: "keycloak"
         clockToleranceSec: 100000000
         scope: "openid profile"
