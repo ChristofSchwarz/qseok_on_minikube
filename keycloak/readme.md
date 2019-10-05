@@ -39,7 +39,7 @@ Those reads helped me with setting up Keycloak on Postgres https://www.dirigible
 ### Create the client with Keycloak REST API
  * Use the Json parser tool <a href="https://stedolan.github.io/jq/download/">jq</a>.
 ```
-sudo apt-get install jq
+sudo apt-get install jq -y
 ```
  * Get an access token
 ```
