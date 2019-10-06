@@ -21,16 +21,8 @@ This installation first starts using Qlik's built-in simple OIDC, so you don't n
 
 ## using Keycloak as IDP for QSEoK
 
- * if you don't want to understand the background, just do this from your shell (login as vagrant vagrant)
-```
-cd ~/keycloak
-sh install_keycloak.sh
-sh create_keycloak_client.sh
-```
- * the last shell-file will prompt you, if you like to apply the changes to the qlik deployment (using helm upgrade). Enter "y" and wait until the changes are applied and 2 pods are restarted
- * Qlik Sense is accessible at https://192.168.56.234 (no change in hosts. file needed) with all users you create in Keycloak 
- * Qlik Sense uses Keycloak as identity-provider (enter console at http://192.168.56.234:32080 with admin admin)
- 
-**Note** See <a href="keycloak/readme.md">this readme</a> for details about Keycloak installation for QSEoK
+**Info:** Keycloak is an open source software product to allow single sign-on with Identity Management and Access Management aimed at modern applications and services. As of March 2018 this JBoss community project is under the stewardship of Red Hat who use it as the upstream project for their RH-SSO product.[1] From a conceptual perspective the tool's intent is to make it easy to secure applications and services with little to no coding.
+
+Go to <a href="keycloak">keycloak</a> folder for more ...
 
 
