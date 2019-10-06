@@ -2,6 +2,20 @@
 
 The steps below will start keycloak as a K8s deployment and expose it as a service for your Minikube (NodePort). If deployed on a production cluster, you may need the service type "LoadBalancer". In this case, edit the `keycloak-svc.yaml` file first. 
 
+## Quick and easy setup
+
+ * if you don't want to understand the background, just do this from your shell (login as vagrant vagrant)
+```
+cd ~/keycloak
+sh install_keycloak.sh
+sh create_keycloak_client.sh
+```
+ * the last shell-file will prompt you, if you like to apply the changes to the qlik deployment (using helm upgrade). Enter "y" and wait until the changes are applied and 2 pods are restarted
+ * Qlik Sense is accessible at https://192.168.56.234 (no change in hosts. file needed) with all users you create in Keycloak 
+ * Qlik Sense uses Keycloak as identity-provider (enter console at http://192.168.56.234:32080 with admin admin)
+ 
+## Explanation of the steps in detail
+
 The simpliest case is Keycloak *without* persistence. You will need two objects (a deployment and a service):
 ```
 kubectl create -f keycloak-depl-nopersist.yaml -f keycloak-svc.yaml
