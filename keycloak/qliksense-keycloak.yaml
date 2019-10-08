@@ -30,11 +30,11 @@ identity-providers:
   secrets:
     idpConfigs:
       - hostname: "192.168.56.234" 
+        realm: "keycloak"      
         primary: true
         discoveryUrl: "http://192.168.56.234:32080/auth/realms/master/.well-known/openid-configuration"
         clientId: "qliklogin"
         clientSecret: "insert-client-secret-here"  # set to the secret you get after creating client in keycloak
-        realm: "keycloak"
         clockToleranceSec: 100000000
         scope: "openid profile"
         useClaimsFromIdToken: true
