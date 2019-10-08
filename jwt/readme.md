@@ -1,0 +1,2 @@
+To create a token (one for admin is already in this folder) go to 
+https://jwt.io/#debugger-io?token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Im15LWtleS1pZGVudGlmaWVyIn0.eyJpc3MiOiJodHRwczovL3FsaWsuYXBpLmludGVybmFsIiwiYXVkIjoicWxpay5hcGkiLCJzdWIiOiJhZG1pbiIsImdyb3VwcyI6WyJFdmVyeW9uZSJdLCJuYW1lIjoiQWRtaW4iLCJleHAiOjE4MDAwMDAwMDB9
