@@ -75,14 +75,9 @@ kubectl delete pod --selector=app=identity-providers
  * You can go to the Keycloak console and create more users, but none will be persisted if the keycloak pod is stopped.
  
 ## Remove Keycloak
-To remove the deployments and the services we installed before, go
+To remove the deployments and the services we installed before, run this <a href="delete_keycloak.sh">shell script</a>. It will remove all Kubernetes objects of keycloak and postgres we installed above.
 ```
-kubectl delete service keycloak-svc
-kubectl delete deployment keycloak
-kubectl delete service postgres-svc
-kubectl delete deployment postgres
-kubectl delete configmap postgres-config 
-kubectl delete pvc pvc-postgres
+sh delete_keycloak.sh
 ```
 
 
