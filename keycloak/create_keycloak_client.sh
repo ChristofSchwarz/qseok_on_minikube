@@ -3,7 +3,16 @@ sudo apt-get install nodejs -y
 echo "Installing Json Query tool 'jq' ..."
 sudo apt-get install jq -y
 
+<<<<<<< HEAD
 KEYCLOAKURL="http://192.168.56.234:32080"
+=======
+TKN=$(curl -s -X POST \
+  http://192.168.56.234:32080/auth/realms/master/protocol/openid-connect/token \
+  -d 'username=admin' \
+  -d 'password=admin' \
+  -d 'client_id=admin-cli' \
+  -d 'grant_type=password' | jq '.access_token' -r)
+>>>>>>> c550d2321060dc52c074d184af98403ab6ea4c06
 
 echo "Get keycloak access_token $KEYCLOAKURL ..."
 TKN=$(curl -s \
@@ -24,17 +33,29 @@ curl -s \
   -H "Content-Type: application/json" \
   -d "$CLIENTJSON"
 
+<<<<<<< HEAD
 echo "get new client's id ..."
 # it is using jq library which we installed above.
 CLIENTID=$(curl -s \
   -X GET "$KEYCLOAKURL/auth/admin/realms/master/clients?clientId=qliklogin" \
+=======
+echo "get new client\'s id ..."
+# it is using jq library which we installed above.
+CLIENTID=$(curl -s -X GET \
+  "http://192.168.56.234:32080/auth/admin/realms/master/clients?clientId=qliklogin" \
+>>>>>>> c550d2321060dc52c074d184af98403ab6ea4c06
   -H "Authorization: Bearer $TKN" \
  | jq '.[0].id' -r)
 
 echo "Get secret of client $CLIENTID"
 
+<<<<<<< HEAD
 CLIENTSECRET=$(curl -s \
   -X GET "$KEYCLOAKURL/auth/admin/realms/master/clients/$CLIENTID/client-secret" \
+=======
+CLIENTSECRET=$(curl -s -X GET \
+  "http://192.168.56.234:32080/auth/admin/realms/master/clients/$CLIENTID/client-secret" \
+>>>>>>> c550d2321060dc52c074d184af98403ab6ea4c06
   -H "Authorization: Bearer $TKN" \
  | jq '.value' -r)
 
