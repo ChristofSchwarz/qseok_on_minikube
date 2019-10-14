@@ -19,7 +19,7 @@ curl -s -X POST \
   -d "$CLIENTJSON"
 
 echo "get new client\'s id ..."
-
+# it is using jq library which we installed above.
 CLIENTID=$(curl -s -X GET \
   "http://192.168.56.234:32080/auth/admin/realms/master/clients?clientId=qliklogin" \
   -H "Authorization: Bearer $TKN" \
