@@ -1,7 +1,7 @@
 echo "Installing Json Query tool 'jq' ..."
 sudo apt-get install jq -y
 
-export TKN=$(curl -s -X POST \
+TKN=$(curl -s -X POST \
   http://192.168.56.234:32080/auth/realms/master/protocol/openid-connect/token \
   -d 'username=admin' \
   -d 'password=admin' \
@@ -20,14 +20,14 @@ curl -s -X POST \
 
 echo "get new client\'s id ..."
 
-export CLIENTID=$(curl -s -X GET \
+CLIENTID=$(curl -s -X GET \
   "http://192.168.56.234:32080/auth/admin/realms/master/clients?clientId=qliklogin" \
   -H "Authorization: Bearer $TKN" \
  | jq '.[0].id' -r)
 
 echo "Get secret of client $CLIENTID"
 
-export CLIENTSECRET=$(curl -s -X GET \
+CLIENTSECRET=$(curl -s -X GET \
   "http://192.168.56.234:32080/auth/admin/realms/master/clients/$CLIENTID/client-secret" \
   -H "Authorization: Bearer $TKN" \
  | jq '.value' -r)
