@@ -1,0 +1,20 @@
+{
+    "username": "api",
+    "enabled": true,
+    "totp": false,
+    "emailVerified": false,
+    "firstName": "Qlik",
+    "lastName": "API",
+    "disableableCredentialTypes": [
+        "password"
+    ],
+    "requiredActions": [],
+    "notBefore": 0,
+    "access": {
+        "manageGroupMembership": true,
+        "view": true,
+        "mapRoles": true,
+        "impersonate": true,
+        "manage": true
+    }
+}
