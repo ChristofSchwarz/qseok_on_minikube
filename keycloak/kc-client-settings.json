@@ -104,7 +104,20 @@
                 "claim.name": "name",
                 "userinfo.token.claim": "true"
             }
-        }
+        },
+        {
+            "name": "Groups Mapper",
+            "protocol": "openid-connect",
+            "protocolMapper": "oidc-group-membership-mapper",
+            "consentRequired": false,
+            "config": {
+                "full.path": "false",
+                "id.token.claim": "true",
+                "access.token.claim": "true",
+                "claim.name": "groupmemberships",
+                "userinfo.token.claim": "true"
+            }
+        },
     ],
     "defaultClientScopes": [
         "web-origins",
