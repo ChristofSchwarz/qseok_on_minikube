@@ -36,7 +36,7 @@ identity-providers:
         clientSecret: "insert-client-secret-here"  # set to the secret you get after creating client in keycloak
         clockToleranceSec: 100000000
         scope: "openid profile"
-        useClaimsFromIdToken: true
+        # useClaimsFromIdToken: true
         claimsMapping:
           client_id: ["clientId"]
           name: ["name", "preferred_username", "given_name"]
