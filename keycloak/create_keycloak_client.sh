@@ -73,7 +73,7 @@ curl -s \
 
 echo "Password for user 'api' set to 'Qlik1234'"
 
-nodejs createjwt.js $USERID >apiuser_jwt.txt
+nodejs createjwt.js api >apiuser_jwt.txt
 
 read -p "apply changes (helm upgrade) to qlik deployment now (y/n)? " answer
 if [ "$answer" != "${answer#[Yy]}" ] ;then
