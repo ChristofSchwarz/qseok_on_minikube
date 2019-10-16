@@ -6,7 +6,8 @@
     "enabled": true,
     "clientAuthenticatorType": "client-secret",
     "redirectUris": [
-        "https://192.168.56.234/login/callback"
+        "https://192.168.56.234/login/callback",
+        "https://192.168.56.234/"
     ],
     "webOrigins": [],
     "notBefore": 0,
