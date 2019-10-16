@@ -12,8 +12,6 @@ edge-auth:
   oidc:
     # next line: true = use built-in simple-oidc, false = use IDP
     enabled: false 
-    redirectUri: https://elastic.example/login/callback
-#    redirectUri: https://elastic.example:32443/login/callback
 
 elastic-infra:
   nginx-ingress:
