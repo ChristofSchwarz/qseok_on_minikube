@@ -28,9 +28,10 @@ identity-providers:
   secrets:
     idpConfigs:
       - hostname: "192.168.56.234" 
-        realm: "keycloak"      
+        realm: "keycloak"              
         primary: true
         discoveryUrl: "http://192.168.56.234:32080/auth/realms/master/.well-known/openid-configuration"
+        postLogoutRedirectUri: "https://192.168.56.234/"
         clientId: "qliklogin"
         clientSecret: "insert-client-secret-here"  # set to the secret you get after creating client in keycloak
         clockToleranceSec: 100000000
@@ -39,6 +40,7 @@ identity-providers:
         claimsMapping:
           client_id: ["clientId"]
           name: ["name", "preferred_username", "given_name"]
+          sub: ["preferred_username"]
 # the 2nd entry in idpConfigs is for API access using JWT tokens. Not needed for keycloak
       - hostname: "192.168.56.234"
         realm: "keycloak" 
