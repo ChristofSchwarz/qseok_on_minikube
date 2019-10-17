@@ -67,9 +67,10 @@ It assumes Qlik Sense to be installed on IP 192.168.56.234 (the vagrant box we p
 ```
 helm upgrade --install qlik qlik-stable/qliksense -f qliksense.yaml
 ```
- * if you upgraded a Qlik Sense deployment (not first-time installed it now) then you have to manually restart the pod "qlik-identity-providers-#######":
+ * if you upgraded a Qlik Sense deployment (not first-time installed it now) then you have to manually restart the pod "qlik-identity-providers-#######" and "qlik-edge-auth-#######":
 ```
 kubectl delete pod --selector=app=identity-providers
+kubectl delete pod --selector=app=edge-auth
 ```
  * you can now login to Qlik Sense with the keycloak user "admin" by going to https://192.168.56.234/ (because you already logged in, this happens without further prompting. You can check who you are logged in as by going to https://192.168.56.234/api/v1/users/me)
  * You can go to the Keycloak console and create more users, but none will be persisted if the keycloak pod is stopped.
