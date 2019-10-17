@@ -1,8 +1,8 @@
 # Qlik Sense Enterprise on Minikube
 
-Status: 06-Oct-2019
+Status: 17-Oct-2019
 
-*Note:* This is a newer version of my repo <a href="https://github.com/ChristofSchwarz/qs_on_Kubernetes/tree/master/vagrantprovision">qs_on_Kubernetes</a>. The video about installing it https://youtu.be/dhQowB_Q9xU is still acurate to the point that this one already installs Qlik Sense Enterprise on Kubernetes and it uses port 443 (https) instead of 32443. 
+*Note:* This is a newer version of my repo <a href="https://github.com/ChristofSchwarz/qs_on_Kubernetes/tree/master/vagrantprovision">qs_on_Kubernetes</a>. I made a separate video showing how to install this https://youtu.be/_QfyxV4gpeM
 
  ## How to provision 
 
@@ -16,7 +16,7 @@ After you downloaded (and unzipped) this git, open a Command Prompt and navigate
 ``` 
 vagrant up
 ```
-wait 1 hour or so for all the packages to deploy. To get a terminal window type
+wait 1.5 hour or so for all the packages to deploy. To get a terminal window type
 ```
 vagrant ssh
 ```
@@ -41,13 +41,13 @@ Check if all pods are ready with command
 ```
 kubectl get pods
 ```
-This installation first starts using Qlik's built-in simple OIDC, so you don't need an Identity Provider. If you don't switch to keycloak (see further below), then you must set your hosts file oo the computer, where you will browse to QSEoK in order to resolve "elastic.example". On Windows, the hosts file is under C:\Windows\System32\drivers\etc\hosts and must be edited as Admin.
+This installation first starts using Qlik's built-in simple OIDC, so you don't need an Identity Provider. If you don't switch to keycloak (see further below), then you must set your hosts file on the computer, where you will browse to QSEoK in order to resolve "elastic.example". On Windows, the hosts file is under C:\Windows\System32\drivers\etc\hosts and must be edited as Admin.
 ```
 192.168.56.234 elastic.example
 ```
  * then connect to https://elastic.example , accept the warning of the self-signed certificate, you will be taken to a simple login-page with 10 hard-coded users described here https://support.qlik.com/articles/000076585
  
- * alternatively, you can install, and switch to, Keycloak (no hosts file change needed), where you can also setup users as needed in the Keycloak web admin console. Read on ...
+ * alternatively, which i recommend, you can install and switch to Keycloak (no hosts file change needed), where you can also setup users as needed in the Keycloak web admin console. Read on ...
 
 ## using Keycloak as IDP for QSEoK
 
