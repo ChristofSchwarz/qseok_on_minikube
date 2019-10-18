@@ -73,7 +73,7 @@ kubectl delete pod --selector=app=identity-providers
 kubectl delete pod --selector=app=edge-auth
 ```
  * you can now login to Qlik Sense with the keycloak user "admin" by going to https://192.168.56.234/ (because you already logged in, this happens without further prompting. You can check who you are logged in as by going to https://192.168.56.234/api/v1/users/me)
- * You can go to the Keycloak console and create more users, but none will be persisted if the keycloak pod is stopped.
+ * You can go to the Keycloak console and create more users
  
 ## Remove Keycloak
 To remove the deployments and the services we installed before, run this <a href="delete_keycloak.sh">shell script</a>. It will remove all Kubernetes objects of keycloak and postgres we installed above.
