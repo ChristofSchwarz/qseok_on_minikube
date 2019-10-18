@@ -2,7 +2,8 @@
 
 Status: 17-Oct-2019
 
-*Note:* This is a newer version of my repo <a href="https://github.com/ChristofSchwarz/qs_on_Kubernetes/tree/master/vagrantprovision">qs_on_Kubernetes</a>. I made a separate video showing how to install this https://youtu.be/_QfyxV4gpeM
+*Note:* This is a newer version of my repo <a href="https://github.com/ChristofSchwarz/qs_on_Kubernetes/tree/master/vagrantprovision">qs_on_Kubernetes</a>. I made a separate video showing how to install this https://youtu.be/_QfyxV4gpeM 
+ * It automatically installs and sets a local Keycloak installation as your identity provider (console at http://192.168.56.234:32080/auth) login with admin / admin
 
  ## How to provision 
 
@@ -41,14 +42,6 @@ Check if all pods are ready with command
 ```
 kubectl get pods
 ```
-This installation first starts using Qlik's built-in simple OIDC, so you don't need an Identity Provider. If you don't switch to keycloak (see further below), then you must set your hosts file on the computer, where you will browse to QSEoK in order to resolve "elastic.example". On Windows, the hosts file is under C:\Windows\System32\drivers\etc\hosts and must be edited as Admin.
-```
-192.168.56.234 elastic.example
-```
- * then connect to https://elastic.example , accept the warning of the self-signed certificate, you will be taken to a simple login-page with 10 hard-coded users described here https://support.qlik.com/articles/000076585
- 
- * alternatively, which i recommend, you can install and switch to Keycloak (no hosts file change needed), where you can also setup users as needed in the Keycloak web admin console. Read on ...
-
 ## using Keycloak as IDP for QSEoK
 
 **Info:** Keycloak is an open source software product to allow single sign-on with Identity Management and Access Management, maintained by JBoss community project and under the stewardship of Red Hat. The tool's intent is to make it easy to secure applications and services with little to no coding.
