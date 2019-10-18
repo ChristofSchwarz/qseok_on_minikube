@@ -1,9 +1,9 @@
 echo 'executing "1_bootstrap.sh"'
 echo 'Updating Ubuntu'
-#sudo apt-get -qq -y update
+sudo apt-get -qq -y update
 
 echo 'Installing git nfs-kernel-server'
-#sudo apt-get install -qq git nfs-kernel-server
+sudo apt-get install -qq git nfs-kernel-server
 
 echo 'Disabling swap'
 sudo swapoff -a
