@@ -18,15 +18,17 @@ After you downloaded (and unzipped) this git, open a Command Prompt and navigate
 ``` 
 vagrant up
 ```
-This takes about 30 minutes to finish, but it leaves the qliksense deployment ongoing. Bash into your new Ubuntu box. I recommend using <a href="https://www.putty.org">Putty</a> but you simply can use 
+This takes about 20 minutes to finish, but it leaves the qliksense deployment ongoing. Bash into your new Ubuntu box. I recommend using <a href="https://www.putty.org">Putty</a> but you simply can use 
 ```
 vagrant ssh
 ```
 Type this to check if qlik sense is ready (this can take another 90 minutes)
 ```
+kubectl get pods
+or
 watch 'kubectl get pods|grep -v Running'
 ```
-This lists all pods which are **not** yet Running, so you will see "ContainerCreating" and even "CrashLoopBackOff".
+The 2nd command lists all pods which are **not** yet Running, so you will see "ContainerCreating" and even "CrashLoopBackOff".
 Type "exit" to get back from bash into into your host system prompt.
 
 If you want to stop and remove the VM properly (also if you want to restart the provisioning process), type
@@ -42,12 +44,6 @@ You can see <a href="Vagrantfile">here the settings</a> for this virtual machine
  * 2 processors
  * sets root user to __vagrant__ password __vagrant__
 
-The container-creation for all pods of qliksense deployment takes **quite some time**, on slower networks like 60-90 minutes.
-
-Check if all pods are ready with command
-```
-kubectl get pods
-```
 ## using Keycloak as IDP for QSEoK
 
 **Info:** Keycloak is an open source software product to allow single sign-on with Identity Management and Access Management, maintained by JBoss community project and under the stewardship of Red Hat. The tool's intent is to make it easy to secure applications and services with little to no coding.
