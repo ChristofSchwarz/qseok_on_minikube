@@ -13,9 +13,16 @@ spec:
       labels:
         app: keycloak
     spec:
+      volumes:
+      - name: syncfolder
+        hostPath:
+          path: /home/vagrant/keycloak/qliktheme
       containers:
       - name: keycloak
         image: jboss/keycloak
+        volumeMounts:
+          - name: syncfolder
+            mountPath: /opt/jboss/keycloak/themes/qliktheme
         env:
         - name: KEYCLOAK_USER
           value: "admin"
