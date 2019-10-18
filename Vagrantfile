@@ -22,5 +22,6 @@ Vagrant.configure("2") do |config|
   config.vm.provision "helm", type: "shell", path: "./sh/4_helm.sh", privileged: false 
   config.vm.provision "nfs", type: "shell", path: "./sh/5_nfs.sh", privileged: false 
   config.vm.provision "mongodb", type: "shell", path: "./sh/6_mongo.sh", privileged: false 
-  config.vm.provision "qliksense", type: "shell", path: "./sh/7_qliksense.sh", privileged: false 
+  config.vm.provision "keycloak", type: "shell", path: "./sh/7_keycloak.sh", privileged: false 
+  config.vm.provision "qliksense", type: "shell", path: "./sh/8_qliksense.sh", privileged: false 
 end

@@ -20,8 +20,8 @@ sudo bash -c 'cat << EOF >>/etc/exports
 /export/src  *(rw,sync,no_subtree_check,no_root_squash)
 /export       *(rw,fsid=0,no_subtree_check,sync)
 EOF'
-
+echo 'Starting NFS Kernel server'
 sudo service nfs-kernel-server restart
 
-echo 'Adding name server'
-sudo  sed -i '1s/^/nameserver 8.8.8.8 /' /etc/resolv.conf
+#echo 'Adding name server'
+#sudo  sed -i '1s/^/nameserver 8.8.8.8 /' /etc/resolv.conf
