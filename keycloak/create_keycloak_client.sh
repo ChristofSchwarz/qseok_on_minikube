@@ -13,7 +13,13 @@ TKN=$(curl -s \
   -d "client_id=admin-cli" \
   -d "grant_type=password" | jq '.access_token' -r)
 
-echo "$TKN"
+echo "Changing theme to qliktheme"
+curl -s \
+  -X PUT "$KEYCLOAKURL/auth/admin/realms/master" \
+  -H "Authorization: Bearer $TKN" \
+  -H "Content-Type: application/json" \
+  -d '{"loginTheme":"qliktheme"}'
+
 echo "Creating Keycloak Client ..."
 # remove newline from .json
 CLIENTJSON=$(tr -d '\r\n' <kc-client-settings.json)
