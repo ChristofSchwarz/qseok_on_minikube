@@ -1,5 +1,9 @@
 echo "Running 7_keycloak.sh ..."
 
+echo "Copying keycloak folder to vagrant's home folder"
+mkdir ~/keycloak
+cp -R /vagrant/keycloak/* ~/keycloak
+
 echo "Installing Node JS ..."
 sudo apt-get install nodejs -y
 echo "Installing Json Query tool 'jq' ..."
