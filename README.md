@@ -8,7 +8,7 @@ Status: 18-Oct-2019
 
  ## How to provision 
 
-We will install an Ubuntu Linux. For that you will need 
+We will install an Ubuntu 16 Linux. For that you will need 
 
  - A license from Qlik that is enabled for Multi-Cloud
  - Oracle VirtualBox 5.2 or later from https://www.virtualbox.org/ or an alternative hypervisor
