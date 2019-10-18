@@ -1,6 +1,6 @@
 # Qlik Sense Enterprise on Minikube
 
-Status: 17-Oct-2019
+Status: 18-Oct-2019
 
 *Note:* This is a newer version of my repo <a href="https://github.com/ChristofSchwarz/qs_on_Kubernetes/tree/master/vagrantprovision">qs_on_Kubernetes</a>. I made a separate video showing how to install this https://youtu.be/_QfyxV4gpeM 
  * It automatically installs and sets a local **Keycloak** installation as your identity provider for Qlik Sense
