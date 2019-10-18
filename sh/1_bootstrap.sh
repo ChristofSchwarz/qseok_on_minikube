@@ -11,6 +11,7 @@ sudo swapoff -a
 echo "copying yaml and keycloak folder to vagrant's home folder"
 mkdir /home/vagrant/yaml
 cp -R /vagrant/yaml/* /home/vagrant/yaml
+chmod
 mkdir /home/vagrant/keycloak
 cp -R /vagrant/keycloak/* /home/vagrant/keycloak
 
