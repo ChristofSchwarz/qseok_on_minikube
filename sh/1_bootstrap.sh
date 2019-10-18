@@ -8,13 +8,6 @@ sudo apt-get install -qq git nfs-kernel-server
 echo 'Disabling swap'
 sudo swapoff -a
 
-echo "copying yaml and keycloak folder to vagrant's home folder"
-mkdir /home/vagrant/yaml
-cp -R /vagrant/yaml/* /home/vagrant/yaml
-chmod
-mkdir /home/vagrant/keycloak
-cp -R /vagrant/keycloak/* /home/vagrant/keycloak
-
 # Comment the swap line from fstab - permanently disable swap
 sudo sed -i.bak '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
 
