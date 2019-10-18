@@ -9,8 +9,4 @@ helm init
 helm init --wait --upgrade
 helm repo update
 
-echo "Copying yaml and keycloak folder to vagrant's home folder"
-mkdir /home/vagrant/yaml
-cp -R /vagrant/yaml/* /home/vagrant/yaml
-mkdir /home/vagrant/keycloak
-cp -R /vagrant/keycloak/* /home/vagrant/keycloak
+
