@@ -18,11 +18,16 @@ After you downloaded (and unzipped) this git, open a Command Prompt and navigate
 ``` 
 vagrant up
 ```
-wait 1.5 hour or so for all the packages to deploy. To get a terminal window type
+This takes about 30 minutes to finish, but it leaves the qliksense deployment ongoing. Bash into your new Ubuntu box. I recommend using <a href="https://www.putty.org">Putty</a> but you simply can use 
 ```
 vagrant ssh
 ```
-Type "exit" to get back from bash of the Ubuntu into your host system prompt.
+Type this to check if qlik sense is ready (this can take another 90 minutes)
+```
+watch 'kubectl get pods|grep -v Running'
+```
+This lists all pods which are **not** yet Running, so you will see "ContainerCreating" and even "CrashLoopBackOff".
+Type "exit" to get back from bash into into your host system prompt.
 
 If you want to stop and remove the VM properly (also if you want to restart the provisioning process), type
 ```
