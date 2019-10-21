@@ -14,14 +14,16 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder "./yaml", "/vagrant/yaml"
   config.vm.synced_folder "./keycloak", "/vagrant/keycloak"  
   config.vm.synced_folder "./sh", "/vagrant/sh" 
+  config.vm.synced_folder "./api", "/vagrant/api" 
   #the following .sh files are executed as root
   config.vm.provision "bootstrap", type: "shell", path: "./sh/1_bootstrap.sh"
   config.vm.provision "docker", type: "shell", path: "./sh/2_docker.sh"
   config.vm.provision "minikube", type: "shell", path: "./sh/3_minikube.sh"
   #next .sh files are privileged false = executed as vagrant user, not as root
-  config.vm.provision "helm", type: "shell", path: "./sh/4_helm.sh", privileged: false 
-  config.vm.provision "nfs", type: "shell", path: "./sh/5_nfs.sh", privileged: false 
-  config.vm.provision "mongodb", type: "shell", path: "./sh/6_mongo.sh", privileged: false 
-  config.vm.provision "keycloak", type: "shell", path: "./sh/7_keycloak.sh", privileged: false 
-  config.vm.provision "qliksense", type: "shell", path: "./sh/8_qliksense.sh", privileged: false 
+  config.vm.provision "helm", type: "shell", path: "./sh/4_uservagrant.sh", privileged: false 
+  config.vm.provision "helm", type: "shell", path: "./sh/5_helm.sh", privileged: false 
+  config.vm.provision "nfs", type: "shell", path: "./sh/6_nfs.sh", privileged: false 
+  config.vm.provision "mongodb", type: "shell", path: "./sh/7_mongo.sh", privileged: false 
+  config.vm.provision "keycloak", type: "shell", path: "./sh/8_keycloak.sh", privileged: false 
+  config.vm.provision "qliksense", type: "shell", path: "./sh/9_qliksense.sh", privileged: false 
 end

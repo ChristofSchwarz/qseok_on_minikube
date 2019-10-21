@@ -1,13 +1,4 @@
-echo "Running 7_keycloak.sh ..."
-
-echo "Copying keycloak folder to vagrant's home folder"
-mkdir ~/keycloak
-cp -R /vagrant/keycloak/* ~/keycloak
-
-echo "Installing Node JS ..."
-sudo apt-get install nodejs -y
-echo "Installing Json Query tool 'jq' ..."
-sudo apt-get install jq -y
+echo 'Executing "8_keycloak.sh" ...'
 
 echo "Deploying postgres ..."
 kubectl create -f ~/keycloak/postgres-pvc.yaml 
