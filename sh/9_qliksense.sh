@@ -22,7 +22,8 @@ SITELICENSE=$(cat ~/api/sitelicense.txt)
 HOST=https://192.168.56.234
 STARTLOOP=$(date)
 #
-until $(curl --insecure -s --output /dev/null --connect-timeout 5 --max-time 6 --head --fail $HOST/api/v1/users); do
+until $(curl --insecure --output /dev/null --connect-timeout 5 --max-time 6 --head \
+--fail $HOST/api/v1/users -H "Authorization: Bearer $BEARER"); do
     echo "Waiting for response at $HOST since $STARTLOOP."
     echo "The following pods aren't ready yet (retry in 30s):"
     kubectl get pods | grep -v Running
