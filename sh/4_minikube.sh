@@ -1,4 +1,4 @@
-echo 'executing "3_minikube.sh"'
+echo 'executing "4_minikube.sh"'
 # this will install minikube Kubernetes and Helm
 
 sudo swapoff -a
