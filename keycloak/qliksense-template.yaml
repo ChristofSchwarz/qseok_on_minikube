@@ -33,7 +33,7 @@ identity-providers:
         discoveryUrl: "http://192.168.56.234:32080/auth/realms/master/.well-known/openid-configuration"
         postLogoutRedirectUri: "https://192.168.56.234/"
         clientId: "qliklogin"
-        clientSecret: "insert-client-secret-here"  # set to the secret you get after creating client in keycloak
+        clientSecret: "insert_secret_here"  # set to the secret you get after creating client in keycloak
         clockToleranceSec: 100000000
         scope: "openid profile"
         # useClaimsFromIdToken: true
