@@ -68,10 +68,9 @@ CLIENTSECRET=$(curl -s \
   -H "Authorization: Bearer $TKN" \
  | jq '.value' -r)
 
-OLDSECRET=$(cat ~/keycloak/qliksense-keycloak.yaml|grep clientSecret|grep -o '".*"'|sed 's/"//g')
-echo "Old secret is $OLDSECRET"
+#OLDSECRET=$(cat ~/keycloak/qliksense-keycloak.yaml|grep clientSecret|grep -o '".*"'|sed 's/"//g')
 echo "New secret is $CLIENTSECRET"
-echo "Updating in qliksense-keycloak.yaml"
+echo "Updating in qliksense-template.yaml"
 
-sed -i "s/$OLDSECRET/$CLIENTSECRET/g" ~/keycloak/qliksense-keycloak.yaml
+sed -i "s/insert_secret_here/$CLIENTSECRET/g" ~/keycloak/qliksense-template.yaml
 
