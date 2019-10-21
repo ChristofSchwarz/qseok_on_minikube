@@ -49,10 +49,6 @@ identity-providers:
           issuer: "https://qlik.api.internal"
         staticKeys:
         - kid: "my-key-identifier"
+          # leave "pem" unchanged and as the last line. The public key will be inserted.
+          # any change make above, not below next line!
           pem: |-
-            -----BEGIN PUBLIC KEY-----
-            MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAIpKq+pXArR3GjnO8dvL3HM0xW9DURER
-            FlOXXvZ4y+WwCaVsg0OudrqsOv/nLPnQ3L3YTyK+lebUpf1T7QampTkCAwEAAQ==
-            -----END PUBLIC KEY-----
-
-
