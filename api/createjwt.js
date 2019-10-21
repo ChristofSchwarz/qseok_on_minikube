@@ -1,7 +1,7 @@
 var sub = process.argv[2];
 var jwt = require('jsonwebtoken');
 var fs = require('fs');
-var privkey= fs.readFileSync('private.key');
+var privkey= fs.readFileSync(__dirname + '/private.key');
 var jwt_payload = {
     iss: "https://qlik.api.internal",
     aud: "qlik.api",
