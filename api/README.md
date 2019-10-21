@@ -7,7 +7,5 @@ nodejs createjwt.js [userid]
 ```
 This token can be used in API calls as http header Bearer Authentication like this:
 ```
-curl --insecure -X GET \
-  "https://192.168.56.234/api/v1/users" \
-  -H "Authorization: Bearer #########################" \
+curl --insecure -s https://192.168.56.234/api/v1/users -H "Authorization: Bearer ######"
 ```
