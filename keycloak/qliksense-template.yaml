@@ -41,6 +41,7 @@ identity-providers:
           client_id: ["clientId"]
           name: ["name", "preferred_username", "given_name"]
           sub: ["preferred_username"]
+          groups: "groupmemberships"
 # the 2nd entry in idpConfigs is for API access using JWT tokens. Not needed for keycloak
       - hostname: "192.168.56.234"
         realm: "keycloak" 
