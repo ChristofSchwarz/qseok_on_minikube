@@ -34,7 +34,7 @@ vagrant destroy
 
  ## Configuration
 
-You can see <a href="Vagrantfile">here the settings</a> for this virtual machine. It uses 
+<a href="Vagrantfile">Here</a> you can see the settings for this virtual machine. It uses 
  * Ubuntu 16.04
  * 6 GB RAM
  * 2 processors
