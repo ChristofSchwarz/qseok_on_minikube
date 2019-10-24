@@ -15,10 +15,9 @@ We will install an Ubuntu 16 Linux. For that you will need
  - Oracle VirtualBox 5.2 or later from https://www.virtualbox.org/ or an alternative hypervisor
  - Vagrant 2.2 or later from https://www.vagrantup.com/ <br/>(Note if prompted where to install leave the default C:\HarshiCorp\Vagrant to avoid issues later !)
 
-After you downloaded this git
- * unzip it into a new folder
+After you downloaded this git into a new folder (using git clone or download as .zip and unzip)
  * open a Command Prompt and 
- * navigate to the folder where you unzipped it
+ * navigate to the folder where you placed this git
  * put your Qlik Sense site license (JWT key) into the text file **./api/sitelicense.txt** (file in the relative folder)
  * start the provisioning with this command
 ``` 
