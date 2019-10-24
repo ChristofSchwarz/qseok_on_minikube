@@ -19,7 +19,7 @@ After you downloaded (and unzipped) this git, open a Command Prompt and navigate
 ``` 
 vagrant up
 ```
-This takes up to 2 hours to finish. It deploys keycloak and waits for the qliksense deployment to finish, even the license will be set which you can provide as a text file in the folder /yaml/sitelicense.txt. 
+This takes up to 2 hours to finish. It deploys keycloak and waits for the qliksense deployment to finish, even the license will be set which you can provide as a text file in the folder /yaml/license.txt. 
 
 To bash into your new Ubuntu box you simply can use 
 ```
