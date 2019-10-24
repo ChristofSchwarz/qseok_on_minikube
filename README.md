@@ -1,10 +1,11 @@
 # Qlik Sense Enterprise on Minikube
 
-Status: 18-Oct-2019
+Status: 24-Oct-2019
 
 *Note:* This is a newer version of my repo <a href="https://github.com/ChristofSchwarz/qs_on_Kubernetes/tree/master/vagrantprovision">qs_on_Kubernetes</a>. I made a separate video showing how to install this https://youtu.be/_QfyxV4gpeM 
  * It automatically installs and sets a local **Keycloak** installation as your identity provider for Qlik Sense
  * Keycloak console at http://192.168.56.234:32080/auth), login with admin / admin
+ * It waits for qlik sense deployment to finish (all pods are ready), will connect via API and even set the site license 
 
  ## How to provision 
 
@@ -18,20 +19,15 @@ After you downloaded (and unzipped) this git, open a Command Prompt and navigate
 ``` 
 vagrant up
 ```
-This takes about 20 minutes to finish, but it leaves the qliksense deployment ongoing. Bash into your new Ubuntu box. I recommend using <a href="https://www.putty.org">Putty</a> but you simply can use 
+This takes up to 2 hours to finish. It deploys keycloak and waits for the qliksense deployment to finish, even the license will be set which you can provide as a text file in the folder /yaml/sitelicense.txt. 
+
+To bash into your new Ubuntu box you simply can use 
 ```
 vagrant ssh
 ```
-Type this to check if qlik sense is ready (this can take another 90 minutes)
-```
-kubectl get pods
-or
-watch 'kubectl get pods|grep -v Running'
-```
-The 2nd command lists all pods which are **not** yet Running, so you will see "ContainerCreating" and even "CrashLoopBackOff".
-Type "exit" to get back from bash into into your host system prompt.
+however, I recommend to use <a href="https://www.putty.org">Putty</a>
 
-If you want to stop and remove the VM properly (also if you want to restart the provisioning process), type
+If you want to stop and remove the VM properly (also before you want to restart the provisioning process), run
 ```
 vagrant destroy
 ```
