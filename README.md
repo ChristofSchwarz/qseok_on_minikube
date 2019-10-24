@@ -15,11 +15,16 @@ We will install an Ubuntu 16 Linux. For that you will need
  - Oracle VirtualBox 5.2 or later from https://www.virtualbox.org/ or an alternative hypervisor
  - Vagrant 2.2 or later from https://www.vagrantup.com/ <br/>(Note if prompted where to install leave the default C:\HarshiCorp\Vagrant to avoid issues later !)
 
-After you downloaded (and unzipped) this git, open a Command Prompt and navigate to this folder. We start based on a Ubuntu Xenial base box and then provision what is stated in the <a href="Vagrantfile">Vagrantfile</a> file and the /sh subfolder
+After you downloaded this git
+ * unzip it into a new folder
+ * open a Command Prompt and 
+ * navigate to the folder where you unzipped it
+ * put your Qlik Sense site license (JWT key) into the text file **./api/sitelicense.txt** (file in the relative folder)
+ * start the provisioning with this command
 ``` 
 vagrant up
 ```
-This takes up to 2 hours to finish. It deploys keycloak and waits for the qliksense deployment to finish, even the license will be set which you can provide as a text file in the folder /yaml/license.txt. 
+This takes up to 2 hours to finish. It starts and completely configures an Ubuntu Linux. All the shell scripts found in <a href="sh">/sh</a> will be executed. It deploys docker, minikube, keycloak and waits for the qliksense deployment to finish, even the license will be set. 
 
 To bash into your new Ubuntu box you simply can use 
 ```
