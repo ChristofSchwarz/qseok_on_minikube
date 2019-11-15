@@ -17,10 +17,11 @@ cp -R /vagrant/keycloak/* ~/keycloak
 mkdir ~/api
 cp -R /vagrant/api/* ~/api
 cd ~/api
-echo "Installing NodeJS packages fs, jsonwebtoken"
-npm install fs
-npm install jsonwebtoken
 
 echo "Creating private/public key pair in ~/api folder"
 openssl genrsa -out ~/api/private.key 1024
 openssl rsa -in ~/api/private.key -pubout -out ~/api/public.key
+
+echo "Installing NodeJS packages fs, jsonwebtoken"
+npm install fs
+npm install jsonwebtoken
