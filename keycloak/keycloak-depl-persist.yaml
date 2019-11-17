@@ -19,7 +19,7 @@ spec:
           path: /home/vagrant/keycloak/qliktheme
       containers:
       - name: keycloak
-        image: jboss/keycloak
+        image: jboss/keycloak:7.0.1
         volumeMounts:
           - name: syncfolder
             mountPath: /opt/jboss/keycloak/themes/qliktheme
