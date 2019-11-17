@@ -5,7 +5,7 @@ Vagrant.configure("2") do |config|
   config.vm.provider "virtualbox" do |v|
     v.name = "qliksense-minikube"
     v.linked_clone = true
-    v.customize ["modifyvm", :id, "--memory", 6144]
+    v.customize ["modifyvm", :id, "--memory", 8192]
     v.customize ["modifyvm", :id, "--cpus", 2]
     v.customize ["modifyvm", :id, "--vram", 64]
     v.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
