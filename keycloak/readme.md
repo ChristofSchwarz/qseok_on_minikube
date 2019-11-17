@@ -88,5 +88,9 @@ The configuration of the identity-provider can lead to some error messages by Ql
 {"errors":[{"title":"No authentication configured for this hostname","code":"LOGIN-2","status":"401"}]}
 {"errors":[{"title":"Invalid identity provider configuration","code":"INVALID-IDP-CONFIG","status":"401"}]}
 ```
-
-
+Check the logs of "edge-auth" and "identity-providers" pod. The below command converts the log into a proper JSON array and uses <a href="https://stedolan.github.io/jq/">jq</a> to parses the keys "level" and "message", which focuses on the relevant log entries.
+```
+kubectl logs --selector app=edge-auth
+kubectl logs --selector app=identity-providers | grep error
+echo [$(kubectl logs --selector app=edge-auth)] | sed -z 's/} {/},{/g' | jq '.[]|"\(.level):\(.message)"'
+```
