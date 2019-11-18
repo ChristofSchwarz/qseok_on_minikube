@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name:  pvc-postgres
+  name: pvc-postgres
   labels:
     app: postgres
 spec:
-  storageClassName: localnfs  # change if needed
+  storageClassName: localnfs
   accessModes:
     - ReadWriteMany
   resources:
