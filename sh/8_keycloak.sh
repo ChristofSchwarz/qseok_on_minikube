@@ -1,3 +1,4 @@
+
 echo 'Executing "8_keycloak.sh" ...'
 
 echo "Deploying postgres ..."
