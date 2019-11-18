@@ -40,7 +40,7 @@ vagrant destroy
 
 <a href="Vagrantfile">Here</a> you can see the settings for this virtual machine. It uses 
  * Ubuntu 16.04
- * 6 GB RAM
+ * 8 GB RAM
  * 2 processors
  * sets root user to __vagrant__ password __vagrant__
 
