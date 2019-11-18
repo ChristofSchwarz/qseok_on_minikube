@@ -8,8 +8,8 @@ spec:
   rules:
     - http:
         paths:
-          - path:  /auth(/|$)(.*)
+          - path: /auth(/|$)(.*)
             backend:
               serviceName: keycloak-svc
               servicePort: 8080
-              
+
