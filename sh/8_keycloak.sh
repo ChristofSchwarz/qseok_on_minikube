@@ -20,16 +20,6 @@ until $(curl -s --output /dev/null --connect-timeout 5 --max-time 6 --head --fai
     sleep 5
 done
 
-echo "Get keycloak access_token ..."
-TKN=$(curl -s \
-  -X POST "$KEYCLOAKURL/auth/realms/master/protocol/openid-connect/token" \
-  -d "username=admin" \
-  -d "password=admin" \
-  -d "client_id=admin-cli" \
-  -d "grant_type=password" | jq '.access_token' -r)
-
-KEYCLOAKURL="http://192.168.56.234:32080"
-
 echo "Get keycloak access_token $KEYCLOAKURL ..."
 TKN=$(curl -s \
   -X POST "$KEYCLOAKURL/auth/realms/master/protocol/openid-connect/token" \
