@@ -44,7 +44,7 @@ identity-providers:
           groups: "groupmemberships"
 # the 2nd entry in idpConfigs is for API access using JWT tokens. Not needed for keycloak
       - hostname: "192.168.56.234"
-        realm: "keycloak" 
+        realm: "keycloak"
         primary: false
         issuerConfig:
           issuer: "https://qlik.api.internal"
