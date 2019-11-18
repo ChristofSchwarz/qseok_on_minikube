@@ -50,4 +50,11 @@ vagrant destroy
 
 Go to <a href="keycloak">keycloak</a> folder for more ...
 
+## Troubleshooting
+
+Sometimes the Ubuntu Virtual Box loses access to internet. You can toggle the Network Adapter 1 from NAT to "Bridged Network" or back in the Oracle VBox settings and then run this command in Ubuntu:
+```
+sudo /etc/init.d/networking restart
+```
+Check the effect by pinging a public address like: ping www.orf.at 
 
