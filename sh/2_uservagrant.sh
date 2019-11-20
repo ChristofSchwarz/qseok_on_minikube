@@ -10,7 +10,8 @@ sudo apt-get install jq -y
 echo "Copying folders to vagrant's home folder"
 mkdir ~/yaml
 cp -R /vagrant/yaml/* ~/yaml
-
+mkdir ~/sh
+cp -R /vagrant/sh/* ~/sh
 mkdir ~/keycloak
 cp -R /vagrant/keycloak/* ~/keycloak
 
