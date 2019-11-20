@@ -40,7 +40,7 @@ vagrant destroy
 
 <a href="Vagrantfile">Here</a> you can see the settings for this virtual machine. It uses 
  * Ubuntu 16.04
- * 6 GB RAM
+ * 8 GB RAM
  * 2 processors
  * sets root user to __vagrant__ password __vagrant__
 
@@ -50,4 +50,11 @@ vagrant destroy
 
 Go to <a href="keycloak">keycloak</a> folder for more ...
 
+## Troubleshooting
+
+Sometimes the Ubuntu Virtual Box loses access to internet. You can toggle the Network Adapter 1 from NAT to "Bridged Network" or back in the Oracle VBox settings and then run this command in Ubuntu:
+```
+sudo /etc/init.d/networking restart
+```
+Check the effect by pinging a public address like: ping www.orf.at 
 
