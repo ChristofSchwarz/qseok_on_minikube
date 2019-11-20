@@ -16,6 +16,9 @@ echo 'creating charts as templates (helm-free install)'
 mkdir ~/charts
 helm fetch --repo http://qlik.bintray.com/stable/ qliksense-init --untar --untardir ~/charts 
 helm fetch --repo http://qlik.bintray.com/stable/ qliksense --untar --untardir ~/charts # --version 1.8.150 
+# Making a fix to the edge-auth deployment.yaml, introducing a new env variable NODE_TLS_REJECTUNAUTHORIZED 
+# so that the edge-auth doesn't reject self-signed certificates
+sed -i 's/          - name: MONGO_URI/          - name: NODE_TLS_REJECT_UNAUTHORIZED\n            value: "0"\n          - name: MONGO_URI/1' ~/charts/qliksense/charts/edge-auth/templates/deployment.yaml
 mkdir ~/manifests
 helm template --output-dir ~/manifests --name qlikinit ~/charts/qliksense-init/ 
 helm template --output-dir ~/manifests --name qlik ~/charts/qliksense/ --values ~/qliksense.yaml 
