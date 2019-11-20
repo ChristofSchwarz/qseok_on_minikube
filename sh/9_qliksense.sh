@@ -22,13 +22,17 @@ sed -i 's/          - name: MONGO_URI/          - name: NODE_TLS_REJECT_UNAUTHOR
 mkdir ~/manifests
 helm template --output-dir ~/manifests --name qlikinit ~/charts/qliksense-init/ 
 helm template --output-dir ~/manifests --name qlik ~/charts/qliksense/ --values ~/qliksense.yaml 
- 
-echo 'installing qliksense from qlik-stable repo using helm ...'
+#
+echo 'installing qliksense-init from qlik-stable repo using helm ...'
 helm upgrade --install qlikinit qlik-stable/qliksense-init 
-helm upgrade --install qlik qlik-stable/qliksense -f ~/qliksense.yaml
+#helm upgrade --install qlik qlik-stable/qliksense -f ~/qliksense.yaml
+echo 'installing qliksense from manifest folder'
+kubectl apply --recursive --filename ~/manifests/qliksense --validate=false
 #
 bash /vagrant/sh/waitforpods.sh 7200 30
 #
+echo 'adding ingress for keycloak'
+kubectl create -f ~/keycloak/keycloak-ingress.yaml
 # create a JWT token for admin user with my nodejs app
 BEARER=$(nodejs ~/api/createjwt.js admin)
 echo "JWT user token is:"
