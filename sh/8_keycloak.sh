@@ -28,8 +28,6 @@ TKN=$(curl -s \
   -d "client_id=admin-cli" \
   -d "grant_type=password" | jq '.access_token' -r)
 
-KEYCLOAKURL="http://192.168.56.234:32080"
-
 echo "Get keycloak access_token $KEYCLOAKURL ..."
 TKN=$(curl -s \
   -X POST "$KEYCLOAKURL/auth/realms/master/protocol/openid-connect/token" \

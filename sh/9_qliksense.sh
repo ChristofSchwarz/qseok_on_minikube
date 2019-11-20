@@ -6,14 +6,22 @@ helm repo add qlik-edge https://qlik.bintray.com/edge
 helm init
 helm repo update
 #
-echo 'installing stable "qliksense-init"'
-helm upgrade --install qlikinit qlik-stable/qliksense-init
+echo 'installing stable "qliksense"'
 #
 cp ~/keycloak/qliksense-template.yaml ~/qliksense.yaml
 # indent the publickey by 12 spaces and append to qliksense.yaml
 cat ~/api/public.key|sed 's/\(.*\)/            \1/'>>~/qliksense.yaml
 #
-echo 'installing qliksense from qlik-stable repo ...'
+echo 'creating charts as templates (helm-free install)'
+mkdir ~/charts
+helm fetch --repo http://qlik.bintray.com/stable/ qliksense-init --untar --untardir ~/charts 
+helm fetch --repo http://qlik.bintray.com/stable/ qliksense --untar --untardir ~/charts # --version 1.8.150 
+mkdir ~/manifests
+helm template --output-dir ~/manifests --name qlikinit ~/charts/qliksense-init/ 
+helm template --output-dir ~/manifests --name qlik ~/charts/qliksense/ --values ~/qliksense.yaml 
+ 
+echo 'installing qliksense from qlik-stable repo using helm ...'
+helm upgrade --install qlikinit qlik-stable/qliksense-init 
 helm upgrade --install qlik qlik-stable/qliksense -f ~/qliksense.yaml
 #
 bash /vagrant/sh/waitforpods.sh 7200 30

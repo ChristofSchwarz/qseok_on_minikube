@@ -1,7 +1,8 @@
 /* manipulated by Christof Schwarz */
 
 .login-pf body {
-    background: url("../img/keycloak-bg.png") no-repeat center center fixed;
+    /*background: url("../img/keycloak-bg.png") no-repeat center center fixed;*/
+    background-color: #E6E9EC;
     background-size: cover;
 }
 
