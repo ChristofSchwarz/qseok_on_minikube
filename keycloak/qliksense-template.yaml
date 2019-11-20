@@ -12,7 +12,11 @@ edge-auth:
   oidc:
     # next line: true = use built-in simple-oidc, false = use IDP
     enabled: false 
-
+    enabled: false 
+  config:
+    enforceTLS: false 
+    secureCookies: false 
+    
 elastic-infra:
   nginx-ingress:
     controller:

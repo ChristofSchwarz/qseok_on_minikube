@@ -16,16 +16,23 @@ echo 'creating charts as templates (helm-free install)'
 mkdir ~/charts
 helm fetch --repo http://qlik.bintray.com/stable/ qliksense-init --untar --untardir ~/charts 
 helm fetch --repo http://qlik.bintray.com/stable/ qliksense --untar --untardir ~/charts # --version 1.8.150 
+# Making a fix to the edge-auth deployment.yaml, introducing a new env variable NODE_TLS_REJECTUNAUTHORIZED 
+# so that the edge-auth doesn't reject self-signed certificates
+sed -i 's/          - name: MONGO_URI/          - name: NODE_TLS_REJECT_UNAUTHORIZED\n            value: "0"\n          - name: MONGO_URI/1' ~/charts/qliksense/charts/edge-auth/templates/deployment.yaml
 mkdir ~/manifests
 helm template --output-dir ~/manifests --name qlikinit ~/charts/qliksense-init/ 
 helm template --output-dir ~/manifests --name qlik ~/charts/qliksense/ --values ~/qliksense.yaml 
- 
-echo 'installing qliksense from qlik-stable repo using helm ...'
+#
+echo 'installing qliksense-init from qlik-stable repo using helm ...'
 helm upgrade --install qlikinit qlik-stable/qliksense-init 
-helm upgrade --install qlik qlik-stable/qliksense -f ~/qliksense.yaml
+#helm upgrade --install qlik qlik-stable/qliksense -f ~/qliksense.yaml
+echo 'installing qliksense from manifest folder'
+kubectl apply --recursive --filename ~/manifests/qliksense --validate=false
 #
 bash /vagrant/sh/waitforpods.sh 7200 30
 #
+echo 'adding ingress for keycloak'
+kubectl create -f ~/keycloak/keycloak-ingress.yaml
 # create a JWT token for admin user with my nodejs app
 BEARER=$(nodejs ~/api/createjwt.js admin)
 echo "JWT user token is:"
