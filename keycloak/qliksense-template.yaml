@@ -42,8 +42,7 @@ identity-providers:
         scope: "openid profile"
         # useClaimsFromIdToken: true
         claimsMapping:
-          client_id: ["clientId"]
-          name: ["name", "preferred_username", "given_name"]
+          name: ["name", "preferred_username"]
           sub: ["preferred_username"]
           groups: ["groupmemberships"]
 # the 2nd entry in idpConfigs is for API access using JWT tokens. Not needed for keycloak
