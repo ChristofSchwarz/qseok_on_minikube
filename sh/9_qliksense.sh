@@ -25,14 +25,20 @@ helm template --output-dir ~/manifests --name qlik ~/charts/qliksense/ --values 
 #
 echo 'installing qliksense-init from qlik-stable repo using helm ...'
 helm upgrade --install qlikinit qlik-stable/qliksense-init 
-#helm upgrade --install qlik qlik-stable/qliksense -f ~/qliksense.yaml
-echo 'installing qliksense from manifest folder'
-kubectl apply --recursive --filename ~/manifests/qliksense --validate=false
+helm upgrade --install qlik qlik-stable/qliksense -f ~/qliksense.yaml
+
+#echo 'installing qliksense from manifest folder'
+#kubectl apply --recursive --filename ~/manifests/qliksense --validate=false
 #
 bash /vagrant/sh/waitforpods.sh 7200 30
 #
 echo 'adding ingress for keycloak'
 kubectl create -f ~/keycloak/keycloak-ingress.yaml
+
+echo 'restarting edge-auth deployment with NODE_TLS_REJECT_UNAUTHORIZED'
+kubectl delete -f ~/manifests/qliksense/charts/edge-auth/templates/deployment.yaml
+kubectl create -f ~/manifests/qliksense/charts/edge-auth/templates/deployment.yaml --validate=false
+
 # create a JWT token for admin user with my nodejs app
 BEARER=$(nodejs ~/api/createjwt.js admin)
 echo "JWT user token is:"
