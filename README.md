@@ -57,7 +57,7 @@ Go to <a href="keycloak">keycloak</a> folder for more ...
 Sometimes the Ubuntu Virtual Box loses access to internet - I guess this is a Oracle VirtualBox issue which occurs when my host computer changes its Wifi connection. The result is, no helm install command will work and after some days your Sense license will be invalid. You can restart the Network Adapter 1 like this
 ```
 sudo ifdown eth1
-sudi ifup eth1
+sudo ifup eth1
 ```
 Check the success by pinging a public address like: ping www.orf.at 
 
