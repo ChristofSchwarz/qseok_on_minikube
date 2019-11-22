@@ -52,9 +52,12 @@ Go to <a href="keycloak">keycloak</a> folder for more ...
 
 ## Troubleshooting
 
-Sometimes the Ubuntu Virtual Box loses access to internet. You can toggle the Network Adapter 1 from NAT to "Bridged Network" or back in the Oracle VBox settings and then run this command in Ubuntu:
+### lost internet connection
+
+Sometimes the Ubuntu Virtual Box loses access to internet - I guess this is a Oracle VirtualBox issue which occurs when my host computer changes its Wifi connection. The result is, no helm install command will work and after some days your Sense license will be invalid. You can restart the Network Adapter 1 like this
 ```
-sudo /etc/init.d/networking restart
+sudo ifdown eth1
+sudo ifup eth1
 ```
-Check the effect by pinging a public address like: ping www.orf.at 
+Check the success by pinging a public address like: ping www.orf.at 
 

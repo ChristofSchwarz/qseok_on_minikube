@@ -13,8 +13,8 @@ edge-auth:
     # next line: true = use built-in simple-oidc, false = use IDP
     enabled: false 
   config:
-    enforceTLS: false 
-    secureCookies: false 
+    enforceTLS: false  # in case a self-signed certificate is used
+    secureCookies: false  # in case a self-signed certificate is used
     
 elastic-infra:
   nginx-ingress:
@@ -33,8 +33,8 @@ identity-providers:
       - hostname: "192.168.56.234" 
         realm: "keycloak"              
         primary: true
-        discoveryUrl: "https://192.168.56.234/auth/realms/master/.well-known/openid-configuration"
-        #discoveryUrl: "http://192.168.56.234:32080/auth/realms/master/.well-known/openid-configuration"
+        discoveryUrl: "http://192.168.56.234:32080/auth/realms/master/.well-known/openid-configuration"
+        #discoveryUrl: "https://192.168.56.234/auth/realms/master/.well-known/openid-configuration"
         postLogoutRedirectUri: "https://192.168.56.234/"
         clientId: "qliklogin"
         clientSecret: "insert_secret_here"  # set to the secret you get after creating client in keycloak
@@ -42,7 +42,6 @@ identity-providers:
         scope: "openid profile"
         # useClaimsFromIdToken: true
         claimsMapping:
-          client_id: ["clientId"]
           name: ["name", "preferred_username"]
           sub: ["preferred_username"]
           groups: ["groupmemberships"]
