@@ -35,9 +35,11 @@ bash /vagrant/sh/waitforpods.sh 7200 30
 echo 'adding ingress for keycloak'
 kubectl create -f ~/keycloak/keycloak-ingress.yaml
 
-echo 'restarting edge-auth deployment with NODE_TLS_REJECT_UNAUTHORIZED'
-kubectl delete -f ~/manifests/qliksense/charts/edge-auth/templates/deployment.yaml
-kubectl create -f ~/manifests/qliksense/charts/edge-auth/templates/deployment.yaml --validate=false
+#echo 'restarting edge-auth deployment with NODE_TLS_REJECT_UNAUTHORIZED'
+kubectl patch deployment qlik-edge-auth -p '{"spec":{"template":{"spec":{"containers":[{"name":"edge-auth", "env":[{"name":"NODE_TLS_REJECT_UNAUTHORIZED","value":"0"}]}]}}}}'
+
+#kubectl delete -f ~/manifests/qliksense/charts/edge-auth/templates/deployment.yaml
+#kubectl create -f ~/manifests/qliksense/charts/edge-auth/templates/deployment.yaml --validate=false
 
 # create a JWT token for admin user with my nodejs app
 BEARER=$(nodejs ~/api/createjwt.js admin)
