@@ -16,9 +16,6 @@ echo 'creating charts as templates (helm-free install)'
 mkdir ~/charts
 helm fetch --repo http://qlik.bintray.com/stable/ qliksense-init --untar --untardir ~/charts 
 helm fetch --repo http://qlik.bintray.com/stable/ qliksense --untar --untardir ~/charts # --version 1.8.150 
-# Making a fix to the edge-auth deployment.yaml, introducing a new env variable NODE_TLS_REJECTUNAUTHORIZED 
-# so that the edge-auth doesn't reject self-signed certificates
-sed -i 's/          - name: MONGO_URI/          - name: NODE_TLS_REJECT_UNAUTHORIZED\n            value: "0"\n          - name: MONGO_URI/1' ~/charts/qliksense/charts/edge-auth/templates/deployment.yaml
 mkdir ~/manifests
 helm template --output-dir ~/manifests --name qlikinit ~/charts/qliksense-init/ 
 helm template --output-dir ~/manifests --name qlik ~/charts/qliksense/ --values ~/qliksense.yaml 
@@ -35,8 +32,11 @@ bash /vagrant/sh/waitforpods.sh 7200 30
 echo 'adding ingress for keycloak'
 kubectl create -f ~/keycloak/keycloak-ingress.yaml
 
-#echo 'restarting edge-auth deployment with NODE_TLS_REJECT_UNAUTHORIZED'
+echo 'patching edge-auth deployment with NODE_TLS_REJECT_UNAUTHORIZED=0 and hosts entry'
 kubectl patch deployment qlik-edge-auth -p '{"spec":{"template":{"spec":{"containers":[{"name":"edge-auth", "env":[{"name":"NODE_TLS_REJECT_UNAUTHORIZED","value":"0"}]}]}}}}'
+kubectl exec $(kubectl get pod -o=name --selector app=edge-auth) env|grep TLS
+kubectl patch deployment qlik-edge-auth -p '{"spec":{"template":{"spec":{"hostAliases":[{"hostnames":["elastic.example"],"ip":"192.168.56.234"}]}}}}'
+kubectl exec $(kubectl get pod -o=name --selector app=edge-auth) cat /etc/hosts
 
 #kubectl delete -f ~/manifests/qliksense/charts/edge-auth/templates/deployment.yaml
 #kubectl create -f ~/manifests/qliksense/charts/edge-auth/templates/deployment.yaml --validate=false
