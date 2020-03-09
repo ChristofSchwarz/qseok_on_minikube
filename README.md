@@ -61,9 +61,9 @@ kubectl get pods --selector release=qlik -o jsonpath="{range .items[*]}{'CURRPOD
 cat getlogs.sh
 ```
 A shell file has been created that will collect all logs from all pods and all containers (some pods have up to 4 containers). This shell script needs one argument: the namespace. If you haven't used one, put default. To execute it run this:
-```
+```bash
 sh -v getlogs.sh default >alllogs.txt 
-cat alllogs.txt
+cat alllogs.txt|grep 'rror\|ERROR'   
 ```
 This log file will have at least 6 MB uncompressed text. 
 
