@@ -54,10 +54,18 @@ Go to <a href="keycloak">keycloak</a> folder for more ...
 
 ### Qlik Sense errors from any pod
 
-Collect all logs of qlik (release name in this example is "qlik") into one large file getlogs.sh:
-```sh
-kubectl get pods -o jsonpath="{range .items[*]}{'CURRPOD='}{@.metadata.name}{'\n'}{range ..containers[*]}{'echo kubectl logs $'}{'CURRPOD -c '}{@.name}{'\n'}{'kubectl logs $'}{'CURRPOD -c '}{@.name}{' -n $1\n'}{end}{end}" --selector release=qlik >getlogs.sh
+Collect all logs of qlik (release name in this example is "qlik") into one large file getlogs.sh: 
+(if you used a namespace, add the -n <namespace> argument)
+```bash
+kubectl get pods --selector release=qlik -o jsonpath="{range .items[*]}{'CURRPOD='}{@.metadata.name}{'\n'}{range ..containers[*]}{'echo kubectl logs $'}{'CURRPOD -c '}{@.name}{'\n'}{'kubectl logs $'}{'CURRPOD -c '}{@.name}{' -n $'}{'1\n'}{end}{end}" >getlogs.sh
+cat getlogs.sh
 ```
+A shell file has been created that will collect all logs from all pods and all containers (some pods have up to 4 containers). This shell script needs one argument: the namespace. If you haven't used one, put default. To execute it run this:
+```
+sh -v getlogs.sh default >alllogs.txt 
+cat alllogs.txt
+```
+This log file will have at least 6 MB uncompressed text. 
 
 ### lost internet connection
 
