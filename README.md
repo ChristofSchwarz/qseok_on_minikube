@@ -52,6 +52,13 @@ Go to <a href="keycloak">keycloak</a> folder for more ...
 
 ## Troubleshooting
 
+### Qlik Sense errors from any pod
+
+Collect all logs of qlik (release name in this example is "qlik") into one large file getlogs.sh:
+```sh
+kubectl get pods -o jsonpath="{range .items[*]}{'CURRPOD='}{@.metadata.name}{'\n'}{range ..containers[*]}{'echo kubectl logs $'}{'CURRPOD -c '}{@.name}{'\n'}{'kubectl logs $'}{'CURRPOD -c '}{@.name}{' -n $1\n'}{end}{end}" --selector release=qlik >getlogs.sh
+```
+
 ### lost internet connection
 
 Sometimes the Ubuntu Virtual Box loses access to internet - I guess this is a Oracle VirtualBox issue which occurs when my host computer changes its Wifi connection. The result is, no helm install command will work and after some days your Sense license will be invalid. You can restart the Network Adapter 1 like this
