@@ -1,3 +1,6 @@
+*** Breaking News August 2020: Qlik no longer gives Qlik Sense Enterprise on Kubernetes to customers ***
+---
+
 # Qlik Sense Enterprise on Minikube
 
 Status: 22-Nov-2019
